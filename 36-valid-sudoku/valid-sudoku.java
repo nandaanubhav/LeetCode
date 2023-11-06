@@ -7,7 +7,7 @@ class Solution {
             for(int j=0; j<9; j++) {
                 if(board[i][j] == '.') continue;
                 Set<Character> rowSet, colSet, boxSet;
-                int boxNo = j / 3 + ((i / 3) * 3);
+                int boxNo = i / 3 + ((j / 3) * 3);
                 // System.out.println("For i " + i + " j " + j + " box: " + boxNo);
                 if(rows.containsKey(i)) {
                     rowSet = rows.get(i);
