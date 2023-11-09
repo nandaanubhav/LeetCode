@@ -33,7 +33,8 @@ class Trie {
     
     public void insert(String word) {
         TrieNode node = root;
-        for(char c : word.toCharArray()) {
+        for(int i=0; i<word.length(); i++) {
+            char c = word.charAt(i);
             if(!node.containsKey(c)) {
                 node.put(c, new TrieNode());
             }
@@ -55,7 +56,8 @@ class Trie {
 
     private TrieNode searchPrefix(String word) {
         TrieNode node = root;
-        for(char c: word.toCharArray()) {
+        for(int i=0; i<word.length(); i++) {
+            char c = word.charAt(i);
             if(node.containsKey(c)) {
                 node = node.get(c);
             } else return null;
