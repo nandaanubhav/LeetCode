@@ -38,17 +38,25 @@ class AutocompleteSystem {
         }
 
         currNode = currNode.children.get(c);
-        List<String> sentences = new ArrayList<>(currNode.sentences.keySet());
-        Collections.sort(sentences, (a,b) -> {
+        PriorityQueue<String> heap = new PriorityQueue<>((a, b) -> {
             int hotA = currNode.sentences.get(a);
             int hotB = currNode.sentences.get(b);
             if(hotA == hotB) {
-                return a.compareTo(b);
+                return b.compareTo(a);
             }
-            return hotB - hotA;
+            return hotA - hotB;
         });
+
+        for (String sentence: currNode.sentences.keySet()) {
+            heap.add(sentence);
+            if (heap.size() > 3) {
+                heap.remove();
+            }
+        }
+
         List<String> ans = new ArrayList<>();
-        for(int i=0; i<Math.min(sentences.size(), 3); i++) ans.add(sentences.get(i));
+        while(!heap.isEmpty()) ans.add(heap.poll());
+        Collections.reverse(ans);
         return ans;
     }
 
