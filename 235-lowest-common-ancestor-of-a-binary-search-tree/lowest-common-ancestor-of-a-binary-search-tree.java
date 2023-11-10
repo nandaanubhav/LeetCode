@@ -9,17 +9,16 @@
  */
 
 class Solution {
-    TreeNode ans;
-    private boolean findLCA(TreeNode node, TreeNode p, TreeNode q) {
-        if(node == null) return false;
-        int left = findLCA(node.left, p, q) ? 1 : 0;
-        int right = findLCA(node.right, p, q) ? 1 : 0;
-        int mid = (node == p || node == q) ? 1 : 0;
-        if(left + right + mid >= 2) ans = node;
-        return left + right + mid > 0;
-    }
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        findLCA(root, p, q);
-        return ans;
+        TreeNode curr = root;
+        while(curr != null) {
+            if(curr.val < p.val && curr.val < q.val) {
+                curr = curr.right;
+            } else if (curr.val > p.val && curr.val > q.val) {
+                curr = curr.left;
+            } else return curr;
+        }
+
+        return null;
     }
 }
