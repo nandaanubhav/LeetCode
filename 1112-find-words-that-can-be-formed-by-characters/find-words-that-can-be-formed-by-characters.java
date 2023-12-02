@@ -8,7 +8,10 @@ class Solution {
             for(char c: s.toCharArray()) wordCharCount[c - 'a']++;
             boolean matched = true;
             for(int i=0; i<26; i++) {
-                if(wordCharCount[i] > charCount[i]) matched = false;
+                if(wordCharCount[i] > charCount[i]) {
+                    matched = false;
+                    break;
+                }
             }
             if (matched) res += s.length();
         }
