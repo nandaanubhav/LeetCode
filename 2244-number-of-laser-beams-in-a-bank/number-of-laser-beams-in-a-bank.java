@@ -1,7 +1,6 @@
 class Solution {
     public int numberOfBeams(String[] bank) {
-        int n = bank.length, index = 0, prevLaserCount = 0, totalBeams = 0;
-        int[] countLaserRows = new int[n];
+        int n = bank.length, prevLaserCount = 0, totalBeams = 0;
         for(int i=0; i<n; i++) {
             String s = bank[i];
             int laserCount = 0;
