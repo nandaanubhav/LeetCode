@@ -10,32 +10,35 @@
  */
 class Solution {
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        ListNode head = new ListNode(0);
-        ListNode temp, prev, curr1 = list1, curr2 = list2;
-        prev = head;
+        if(list1 == null) return list2;
+        if(list2 == null) return list1;
+        if(list1.val > list2.val) return mergeTwoLists(list2, list1);
+        ListNode curr = list1, curr1 = list1.next, curr2 = list2;
+
         while(curr1 != null && curr2 != null) {
-            if(curr1.val > curr2.val) {
-                temp = new ListNode(curr2.val);
-                curr2 = curr2.next;
-            } else {
-                temp = new ListNode(curr1.val);
+            // System.out.println("Both Not null");
+            if(curr1.val <= curr2.val) {
+                curr.next = curr1;
+                curr = curr.next;
                 curr1 = curr1.next;
+            } else {
+                curr.next = curr2;
+                curr = curr.next;
+                curr2 = curr2.next;
             }
-            prev.next = temp;
-            prev = temp;
         }
-        while(curr1 != null ){
-            temp = new ListNode(curr1.val);
-            prev.next = temp;
-            prev = temp;
+        while(curr1 != null) {
+            // System.out.println("1 Not null");
+            curr.next = curr1;
+            curr = curr.next;
             curr1 = curr1.next;
         }
-        while(curr2 != null ){
-            temp = new ListNode(curr2.val);
-            prev.next = temp;
-            prev = temp;
+        while(curr2 != null) {
+            // System.out.println("2 Not null");
+            curr.next = curr2;
+            curr = curr.next;
             curr2 = curr2.next;
         }
-        return head.next;
+        return list1;
     }
 }
