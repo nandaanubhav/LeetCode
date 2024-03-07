@@ -10,7 +10,7 @@ class Solution {
                 letter = i;
             }
         }
-        if(maxFreq > Math.ceil(n/2.0)) return "";
+        if(maxFreq > Math.ceil((double)n/2)) return "";
         char[] ans = new char[n];
         int index = 0;
         while(charSet[letter] > 0) {
