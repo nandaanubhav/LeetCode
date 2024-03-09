@@ -18,22 +18,13 @@ import static java.util.stream.Collectors.reducing;
  * }
  */
 class Solution {
-    private void invertNode(TreeNode node) {
-        if(node == null) return;
-        TreeNode temp = node.left;
-        node.left = node.right;
-        node.right = temp;
-    }
     public TreeNode invertTree(TreeNode root) {
         if(root == null) return root;
-        Queue<TreeNode> queue = new LinkedList<TreeNode>();
-        queue.add(root);
-        while(!queue.isEmpty()) {
-            TreeNode curr = queue.poll();
-            invertNode(curr);
-            if(curr.left != null) queue.add(curr.left);
-            if(curr.right != null) queue.add(curr.right); 
-        }
+        TreeNode temp = root.left;
+        root.left = root.right;
+        root.right = temp;
+        invertTree(root.left);
+        invertTree(root.right);
         return root;
     }
 }
