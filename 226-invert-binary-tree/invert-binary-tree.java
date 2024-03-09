@@ -30,9 +30,7 @@ class Solution {
         queue.add(root);
         while(!queue.isEmpty()) {
             TreeNode curr = queue.poll();
-            TreeNode temp = curr.left;
-            curr.left = curr.right;
-            curr.right = temp;
+            invertNode(curr);
             if(curr.left != null) queue.add(curr.left);
             if(curr.right != null) queue.add(curr.right); 
         }
