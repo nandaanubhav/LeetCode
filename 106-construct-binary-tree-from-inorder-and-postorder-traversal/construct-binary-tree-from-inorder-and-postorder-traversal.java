@@ -18,7 +18,6 @@ class Solution {
     Map<Integer, Integer> inorderIndexMap;
     private TreeNode arrayToTree(int[] postorder, int left, int right) {
         if(left > right) return null;
-        if(postorderIndex < 0) return null;
         int rootElement = postorder[postorderIndex--];
         TreeNode root = new TreeNode(rootElement);
         root.right = arrayToTree(postorder, inorderIndexMap.get(rootElement) + 1, right);
