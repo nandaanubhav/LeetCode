@@ -6,14 +6,14 @@ class Solution {
             return;
         }
 
-        if(rightCount > leftCount) return;
+        // if(rightCount > leftCount) return;
 
         if(leftCount < size/2) {
             s.append('(');
             backtrack(leftCount + 1, rightCount, s, size);
             s.deleteCharAt(s.length() - 1);
         }
-        if(rightCount <= leftCount) {
+        if(rightCount < leftCount) {
             s.append(')');
             backtrack(leftCount, rightCount + 1, s, size);
             s.deleteCharAt(s.length() - 1);
