@@ -10,7 +10,7 @@ class Solution {
             else if (c == 'S') currY--;
             else if (c == 'W') currX--;
             String currPos = currX + "-" + currY;
-            System.out.println(currPos);
+            // System.out.println(currPos);
             if (visited.contains(currPos)) return true;
             else visited.add(currPos);
         }
