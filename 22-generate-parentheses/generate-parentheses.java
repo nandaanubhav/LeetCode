@@ -1,27 +1,23 @@
 class Solution {
     List<String> ans;
-    private void backtrack(int leftCount, int rightCount, StringBuilder s, int size) {
-        if(s.length() == size) {
-            ans.add(s.toString());
-            return;
+    private void backtrack(int n, StringBuilder currSeq, int leftCount, int rightCount) {
+        if(currSeq.length() == 2 * n) {
+            ans.add(currSeq.toString());
         }
-
-        // if(rightCount > leftCount) return;
-
-        if(leftCount < size/2) {
-            s.append('(');
-            backtrack(leftCount + 1, rightCount, s, size);
-            s.deleteCharAt(s.length() - 1);
+        if(leftCount < n) {
+            currSeq.append('(');
+            backtrack(n, currSeq, leftCount + 1, rightCount);
+            currSeq.deleteCharAt(currSeq.length() - 1);
         }
         if(rightCount < leftCount) {
-            s.append(')');
-            backtrack(leftCount, rightCount + 1, s, size);
-            s.deleteCharAt(s.length() - 1);
+            currSeq.append(')');
+            backtrack(n, currSeq, leftCount, rightCount + 1);
+            currSeq.deleteCharAt(currSeq.length() - 1);
         }
     }
     public List<String> generateParenthesis(int n) {
         ans = new ArrayList<>();
-        backtrack(0, 0, new StringBuilder(), 2 *n);
+        backtrack(n, new StringBuilder(), 0, 0);
         return ans;
     }
 }
