@@ -1,13 +1,11 @@
 class Solution {
     private void backtrack(int index, List<List<Integer>> ans, LinkedList<Integer> seq, int[] nums) {
-        ans.add(new ArrayList<>(seq));
-        if(index >= nums.length) return;
-
-        for(int i=index; i<nums.length; i++) {
-
+        ans.add(new ArrayList<Integer>(seq));
+        if(seq.size() == nums.length) return;
+        for(int i=index; i<nums.length;i++) {
             if(i != index && nums[i] == nums[i-1]) continue;
             seq.add(nums[i]);
-            backtrack(i+1, ans, seq, nums);
+            backtrack(i + 1, ans, seq, nums);
             seq.removeLast();
         }
     }
