@@ -1,0 +1,2 @@
+# Write your MySQL query statement below
+Select s.user_id, coalesce(round((select count(1) from Confirmations c1 where c1.user_id = s.user_id and c1.action = 'confirmed') /(select count(1) from Confirmations c where c.user_id = s.user_id),2), 0) as confirmation_rate from Signups s;
