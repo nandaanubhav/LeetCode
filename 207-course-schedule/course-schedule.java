@@ -1,28 +1,39 @@
 class Solution {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
-        int[] inDegree = new int[numCourses];
-        List<List<Integer>> adj = new ArrayList<>();
-        for(int i=0; i<numCourses; i++) adj.add(new ArrayList<>());
+        Map<Integer, List<Integer>> map = new HashMap<>();
+        int[] indegree = new int[numCourses];
         for(int[] prerequisite : prerequisites) {
-            adj.get(prerequisite[1]).add(prerequisite[0]);
-            inDegree[prerequisite[0]]++;
+            if(!map.containsKey(prerequisite[1])) {
+                map.put(prerequisite[1], new ArrayList<>());
+            }
+            map.get(prerequisite[1]).add(prerequisite[0]);
+            indegree[prerequisite[0]]++;
         }
-
-        Queue<Integer> queue = new LinkedList<>();
+        LinkedList<Integer> queue = new LinkedList<>();
+        List<Integer> order = new ArrayList<>();
         for(int i=0; i<numCourses; i++) {
-            if(inDegree[i] == 0) queue.add(i);
+            if(indegree[i] == 0) {
+                queue.add(i);
+                order.add(i);
+            }
         }
-        int coursesTaken = 0;
         while(!queue.isEmpty()) {
-            int course = queue.poll();
-            coursesTaken++;
-            for(int neighbor : adj.get(course)) {
-                inDegree[neighbor]--;
-                if(inDegree[neighbor] == 0) {
-                    queue.add(neighbor);
+            int size = queue.size();
+            for(int i=0; i<size; i++) {
+                int currCourse = queue.poll();
+                if(map.containsKey(currCourse)) {
+                    List<Integer> nextCourses = map.get(currCourse);
+                    for(int nextCourse: nextCourses) {
+                        indegree[nextCourse]--;
+                        if(indegree[nextCourse] == 0) {
+                            queue.add(nextCourse);
+                            order.add(nextCourse);
+                        }
+                    }
                 }
             }
         }
-        return coursesTaken == numCourses;
+        return order.size() == numCourses;
+
     }
 }
