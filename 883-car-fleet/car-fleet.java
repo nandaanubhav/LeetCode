@@ -1,18 +1,26 @@
 class Solution {
-    public int carFleet(int target, int[] position, int[] speed) {
-        double[] endTime = new double[target];
-        for (int i = 0; i < position.length; i++) {
-            endTime[position[i]] = (double)(target - position[i]) / speed[i];
-        }
-        double prev = 0.0;
+    public int carFleet(int target, int[] p, int[] s) {
+
+        int[][] combo = new int[p.length][2]; 
+        Stack<Double> stack = new Stack<>();
+        for(int i=0;i<p.length;i++){
+            combo[i][0]=p[i];
+            combo[i][1]=s[i];
+        } 
+        Arrays.sort(combo, Comparator.comparingInt(o -> o[0]));
         int count = 0;
-        for(int i=target-1; i>=0; i--) {
-            if(endTime[i] > prev) {
-                prev = endTime[i];
+        double prev = 0.0;
+        for(int i=combo.length-1;i>=0;i--){
+            double curr = (double) (target-combo[i][0])/combo[i][1];
+            if(curr > prev) {
+                prev = curr;
                 count++;
             }
+            // if(!stc.isEmpty() && cur<=stc.peek()){
+            //     continue;
+            // }
+            // stc.push(cur);
         }
         return count;
-        
     }
 }
