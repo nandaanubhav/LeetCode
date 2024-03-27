@@ -1,8 +1,6 @@
 class Solution {
     public int carFleet(int target, int[] p, int[] s) {
-
         int[][] combo = new int[p.length][2]; 
-        Stack<Double> stack = new Stack<>();
         for(int i=0;i<p.length;i++){
             combo[i][0]=p[i];
             combo[i][1]=s[i];
@@ -16,10 +14,6 @@ class Solution {
                 prev = curr;
                 count++;
             }
-            // if(!stc.isEmpty() && cur<=stc.peek()){
-            //     continue;
-            // }
-            // stc.push(cur);
         }
         return count;
     }
