@@ -5,7 +5,7 @@ class Solution {
         int[] dp = new int[n];
         int[] dp2 = new int[n];
         dp[0] = nums[0];
-        dp[1] = Math.max(dp[0], nums[1]);
+        dp[1] = nums[0];
         for (int i=2; i<n-1; i++) {
             dp[i] = Math.max(dp[i-2] + nums[i], dp[i-1]);
         }
