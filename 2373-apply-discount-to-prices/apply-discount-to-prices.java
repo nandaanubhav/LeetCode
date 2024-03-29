@@ -1,6 +1,5 @@
 class Solution {
     private String convert(String s, int discount) {
-        System.out.println(s);
         if(s.charAt(0) != '$') return s;
         DecimalFormat df = new DecimalFormat("0.00");
         try {
