@@ -1,29 +1,19 @@
 class Solution {
     public int minimumSwaps(int[] nums) {
-        int n = nums.length;
-        if(n == 1) return 0;
-        int maxElement = nums[0], maxElementPos = 0, minElement = nums[0] , minElementPos = 0;
-        for(int i=0; i<n; i++) {
+        int maxElement = Integer.MIN_VALUE, maxElementIndex = 0;
+        int minElement = Integer.MAX_VALUE, minElementIndex = 0;
+        for(int i=0; i<nums.length; i++) {
             if(nums[i] >= maxElement) {
                 maxElement = nums[i];
-                maxElementPos = i;
+                maxElementIndex = i;
             }
             if(nums[i] < minElement) {
                 minElement = nums[i];
-                minElementPos = i;
+                minElementIndex = i;
             }
         }
-        // for(int i=n-1; i>=0; i--) {
-        //     if(nums[i] <= minElement) {
-        //         minElement = nums[i];
-        //         minElementPos = i;
-        //     }
-        // }
-        // System.out.println("maxElementPos " + maxElementPos);
-        // System.out.println("minElementPos " + minElementPos);
-        int maxElementSwaps = n - maxElementPos - 1;
-        int minElementSwaps = minElementPos;
-        if (minElementPos > maxElementPos) return maxElementSwaps + minElementSwaps - 1;
-        else return maxElementSwaps + minElementSwaps;
+        int leftSwaps = minElementIndex;
+        int rightSwaps = nums.length - maxElementIndex - 1;
+        return minElementIndex > maxElementIndex ? rightSwaps + leftSwaps - 1 : rightSwaps + leftSwaps;
     }
 }
