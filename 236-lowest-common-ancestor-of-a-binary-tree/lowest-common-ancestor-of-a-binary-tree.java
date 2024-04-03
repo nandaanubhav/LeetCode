@@ -15,7 +15,7 @@ class Solution {
         int left = findLCA(node.left, p, q) ? 1 : 0;
         int right = findLCA(node.right, p, q) ? 1 : 0;
         int self = (node == p || node == q) ? 1 : 0;
-        if(left + self + right >= 2) ans = node;
+        if(left + self + right == 2) ans = node;
         return left + self + right > 0;
     }
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
