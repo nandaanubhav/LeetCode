@@ -15,7 +15,7 @@ class Solution {
         int left = findLCA(node.left, p, q) ? 1 : 0;
         int right = findLCA(node.right, p, q) ? 1 : 0;
         int mid = (node == p || node == q) ? 1 : 0;
-        if(left + mid + right >= 2) ans = node;
+        if(left + mid + right == 2) ans = node;
         return left + mid + right > 0;
     }
 
