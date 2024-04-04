@@ -8,8 +8,7 @@ class Solution {
         // Dictionary which keeps a count of all the unique characters in t.
         Map<Character, Integer> dictT = new HashMap<Character, Integer>();
         for (int i = 0; i < t.length(); i++) {
-            int count = dictT.getOrDefault(t.charAt(i), 0);
-            dictT.put(t.charAt(i), count + 1);
+            dictT.put(t.charAt(i), dictT.getOrDefault(t.charAt(i), 0) + 1);
         }
 
         // Number of unique characters in t, which need to be present in the desired window.
@@ -32,8 +31,7 @@ class Solution {
 
         while (r < s.length()) {
             char c = s.charAt(r);
-            int count = windowCounts.getOrDefault(c, 0);
-            windowCounts.put(c, count + 1);
+            windowCounts.put(c, windowCounts.getOrDefault(c, 0) + 1);
             if (dictT.containsKey(c) && windowCounts.get(c).intValue() == dictT.get(c).intValue()) {
                 formed++;
             }
