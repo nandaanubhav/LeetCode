@@ -9,7 +9,7 @@ class Solution {
 
         for (int i=4;i<=n;i++) {
             int maxProduct = i;
-            for(int j=2; j < i; j++) {
+            for(int j=2; i-j > 1; j++) {
                 maxProduct = Math.max(maxProduct, j * dp[i-j]);
             }
             dp[i] = maxProduct;
