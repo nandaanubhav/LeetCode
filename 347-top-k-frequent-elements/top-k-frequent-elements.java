@@ -1,19 +1,19 @@
 class Solution {
-    class Number implements Comparable<Number> {
-        int num;
-        int freq;
+    // class Number implements Comparable<Number> {
+    //     int num;
+    //     int freq;
 
-        public Number(int num, int freq) {
-            this.num = num;
-            this.freq = freq;
-        }
+    //     public Number(int num, int freq) {
+    //         this.num = num;
+    //         this.freq = freq;
+    //     }
 
-        public int compareTo(Number number) {
-            return number.freq - freq;
-        }
-    }
+    //     public int compareTo(Number number) {
+    //         return number.freq - freq;
+    //     }
+    // }
     public int[] topKFrequent(int[] nums, int k) {
-        int n = nums.length;
+    //     int n = nums.length;
         HashMap<Integer, Integer> freqSet = new HashMap<>();
         for(int i : nums) {
             freqSet.put(i, freqSet.getOrDefault(i, 0) + 1);
