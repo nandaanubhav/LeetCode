@@ -3,14 +3,16 @@ class Solution {
         Stack<Character> stack = new Stack<>();
         for(char c : s.toCharArray()) {
             if(c == ')' || c == '}' || c == ']') {
-                if (stack.isEmpty()) return false;
-                if( (c == ')' && stack.peek() == '(')  || 
-                    (c == '}' && stack.peek() == '{') || 
-                    (c == ']' && stack.peek() == '[') ) {
-                    stack.pop();
-                } else return false;
-            } else stack.push(c);
+                if(stack.isEmpty()) return false;
+                if( (c == ')' && stack.peek() == '(') ||
+                    (c == '}' && stack.peek() == '{') ||
+                    (c == ']' && stack.peek() == '[')) {
+                        stack.pop();
+                        continue;
+                    } else return false;
+            }
+            stack.add(c);
         }
-        return stack.size() == 0 ? true : false;
+        return stack.size() == 0;
     }
 }
