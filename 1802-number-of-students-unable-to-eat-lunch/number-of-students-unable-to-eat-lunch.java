@@ -1,11 +1,10 @@
 class Solution {
     public int countStudents(int[] students, int[] sandwiches) {
         Queue<Integer> studentQueue = new LinkedList<>(Arrays.stream(students).boxed().toList());
-        Queue<Integer> sandWichQueue = new LinkedList<>(Arrays.stream(sandwiches).boxed().toList());
-        int studentsMissed = 0;
+        int studentsMissed = 0, sandwichIndex = 0;
         while(studentsMissed < studentQueue.size()) {
-            if(studentQueue.peek() == sandWichQueue.peek()) {
-                sandWichQueue.poll();
+            if(studentQueue.peek() == sandwiches[sandwichIndex]) {
+                sandwichIndex++;
                 studentQueue.poll();
                 studentsMissed = 0;
             } else {
