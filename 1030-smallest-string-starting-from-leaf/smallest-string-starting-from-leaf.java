@@ -18,7 +18,6 @@ class Solution {
     private void dfs(TreeNode node, StringBuilder sb) {
         if(node == null) return;
         sb.insert(0, (char) (node.val + 'a'));
-        System.out.println(sb.toString());
         if(node.left == null && node.right == null) {
             if(sb.toString().compareTo(smallestString) < 0 || smallestString.equals("")) {
                 smallestString = sb.toString();
