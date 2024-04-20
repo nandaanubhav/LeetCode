@@ -30,11 +30,13 @@ class Solution {
                 }
             }
         }
-        int[][] result = new int[ans.size()][4];
-        int index = 0;
-        for(int[] array : ans) {
-            result[index++] = array;
-        }
-        return result;
+        // int[][] result = new int[ans.size()][4];
+        // int index = 0;
+        // for(int[] array : ans) {
+        //     result[index++] = array;
+        // }
+        // return result;
+        return ans.stream().toArray(int[][] :: new);
+
     }
 }
