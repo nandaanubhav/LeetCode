@@ -1,6 +1,5 @@
 class Solution {
     public boolean validPath(int n, int[][] edges, int source, int destination) {
-        if(source == destination) return true;
         Map<Integer, List<Integer>> adjList = new HashMap<>();
         for(int[]  edge: edges) {
             if(!adjList.containsKey(edge[0])) adjList.put(edge[0], new ArrayList<>());
@@ -13,8 +12,8 @@ class Solution {
         queue.add(source);
         while(!queue.isEmpty()) {
             int node = queue.poll();
+            if(node == destination) return true;
             for(int neighbor: adjList.getOrDefault(node, new ArrayList<>())) {
-                if(neighbor == destination) return true;
                 if(!visited.contains(neighbor)) {
                     visited.add(neighbor);
                     queue.add(neighbor);
