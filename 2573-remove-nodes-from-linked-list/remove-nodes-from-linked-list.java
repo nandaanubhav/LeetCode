@@ -18,13 +18,12 @@ class Solution {
             }
             if (!stack.isEmpty()) {
                 stack.peek().next = curr;
+            } else {
+                head = curr;
             }
             stack.add(curr);
             curr = curr.next;
         }
-        while(!stack.isEmpty()) {
-            curr = stack.pop();
-        }
-        return curr;
+        return head;
     }
 }
