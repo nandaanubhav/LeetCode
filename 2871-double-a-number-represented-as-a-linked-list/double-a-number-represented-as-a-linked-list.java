@@ -17,29 +17,28 @@ class Solution {
             curr = curr.next;
         }
         int carry = 0;
-        ListNode psuedoHead = new ListNode(-1);
-        ListNode prev = psuedoHead;
+        ListNode node = null;
         while(!stack.isEmpty()) {
             int val = stack.pop();
             int nodeVal = (val * 2) + carry;
             carry = nodeVal / 10;
             nodeVal = nodeVal % 10;
-            ListNode node = new ListNode(nodeVal);
-            prev.next = node;
-            prev = node;
+            node = new ListNode(nodeVal, node);
+            // prev.next = node;
+            // prev = node;
         }
         if(carry >= 1) {
-            ListNode node = new ListNode(carry);
-            prev.next = node;
+            node = new ListNode(carry, node);
+            // prev.next = node;
         }
-        curr = psuedoHead.next;
-        prev = null;
-        while(curr != null) {
-            ListNode temp = curr.next;
-            curr.next = prev;
-            prev = curr;
-            curr = temp;
-        }
-        return prev;
+        // curr = psuedoHead.next;
+        // prev = null;
+        // while(curr != null) {
+        //     ListNode temp = curr.next;
+        //     curr.next = prev;
+        //     prev = curr;
+        //     curr = temp;
+        // }
+        return node;
     }
 }
